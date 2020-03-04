@@ -21,7 +21,7 @@ const os = require('os');
 
 function getArgs (fn) {
   const fnString = fn.toString();
-  const argList = /[(]([^)]*)[)]/.exec(fnString)[ 1 ].split(',');
+  const argList = /[(]([^)]*)[)]/.exec(fnString)[1].split(',');
   return argList.map(String.prototype.trim);
 }
 
@@ -43,7 +43,7 @@ function getOption (opts, key, alt) {
   if (opts.get && supportsDefaults(opts.get)) {
     return opts.get(key, alt);
   } else {
-    return opts[ key ] || alt;
+    return opts[key] || alt;
   }
 }
 
@@ -60,12 +60,12 @@ function max (x, y) {
 function parseUri (uri) {
   if (uri) {
     var parsed = url.parse(uri);
-    var authSplit = parsed.auth ? parsed.auth.split(':') : [ null, null ];
-    var heartbeat = parsed.query ? parsed.query.split('&')[ 0 ].split('=')[ 1 ] : null;
+    var authSplit = parsed.auth ? parsed.auth.split(':') : [null, null];
+    var heartbeat = parsed.query ? parsed.query.split('&')[0].split('=')[1] : null;
     return {
       useSSL: parsed.protocol === 'amqps:',
-      user: authSplit[ 0 ],
-      pass: authSplit[ 1 ],
+      user: authSplit[0],
+      pass: authSplit[1],
       host: parsed.hostname,
       port: parsed.port,
       vhost: parsed.pathname ? parsed.pathname.slice(1) : undefined,
@@ -76,7 +76,7 @@ function parseUri (uri) {
 
 function split (x) {
   if (typeof x === 'number') {
-    return [ x ];
+    return [x];
   } else if (Array.isArray(x)) {
     return x;
   } else {
@@ -202,9 +202,9 @@ Adapter.prototype.getNextUri = function () {
 
 Adapter.prototype.getNext = function (list) {
   if (this.connectionIndex >= list.length) {
-    return list[ 0 ];
+    return list[0];
   } else {
-    return list[ this.connectionIndex ];
+    return list[this.connectionIndex];
   }
 };
 
